@@ -37,10 +37,10 @@ class Login extends Component
 
 ### Getting Model Data
 
-Get the model data as a collection:
+Get all model data as an array:
 
 ```php
-$collection = $this->getModel();
+$array = $this->getModel();
 ```
 
 Get a single value:
@@ -49,7 +49,7 @@ Get a single value:
 $email = $this->getModel('email');
 ```
 
-Get an array of values:
+Get an array of specific values:
 
 ```php
 $credentials = $this->getModel(['email', 'password']);

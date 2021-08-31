@@ -16,9 +16,9 @@ trait WithModel
             return Arr::only($this->model, $key);
         } else if ($key) {
             return Arr::get($this->model, $key, $default);
-        } else {
-            return collect($this->model);
         }
+
+        return $this->model;
     }
 
     public function setModel($key, $value = null)
