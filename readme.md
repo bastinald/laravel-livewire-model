@@ -37,16 +37,22 @@ class Login extends Component
 
 ### Getting Model Data
 
-Get the model data as an array:
-
-```php
-$array = $this->model;
-```
-
 Get the model data as a collection:
 
 ```php
-$collection = $this->model();
+$collection = $this->getModel();
+```
+
+Get a single value:
+
+```php
+$email = $this->getModel('email');
+```
+
+Get an array of values:
+
+```php
+$credentials = $this->getModel(['email', 'password']);
 ```
 
 ### Setting Model Data
@@ -54,22 +60,22 @@ $collection = $this->model();
 Set a single value:
 
 ```php
-$this->model['name'] = 'Kevin';
-```
-
-Set values using Eloquent model data:
-
-```php
-$this->model = User::first()->toArray();
+$this->setModel('name', 'Kevin');
 ```
 
 Set values using an array:
 
 ```php
-$this->model = [
+$this->setModel([
     'name' => 'Kevin',
     'email' => 'kevin@example.com',
-];
+]);
+```
+
+Set values using Eloquent model data:
+
+```php
+$this->setModel(User::first());
 ```
 
 ### Binding Model Data

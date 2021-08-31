@@ -2,20 +2,38 @@
 
 namespace Bastinald\LaravelLivewireModel\Traits;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 
 trait WithModel
 {
     public $model = [];
-    private $modelCollection;
 
-    public function model()
+    public function getModel($key = null, $default = null)
     {
-        if (!$this->modelCollection) {
-            $this->modelCollection = collect($this->model);
+        if (is_array($key)) {
+            return Arr::only($this->model, $key);
+        } else if ($key) {
+            return Arr::get($this->model, $key, $default);
+        } else {
+            return collect($this->model);
+        }
+    }
+
+    public function setModel($key, $value = null)
+    {
+        if ($key instanceof Model) {
+            $key = $key->toArray();
         }
 
-        return $this->modelCollection;
+        if (is_array($key)) {
+            foreach ($key as $arrayKey => $arrayValue) {
+                Arr::set($this->model, $arrayKey, $arrayValue);
+            }
+        } else {
+            Arr::set($this->model, $key, $value);
+        }
     }
 
     public function validateModel($rules = null)
