@@ -1,3 +1,9 @@
+# No Longer Maintained
+
+Please use regular Livewire component properties instead.
+
+---
+
 # Laravel Livewire Model
 
 This package contains a trait which makes Laravel Livewire form data model manipulation a breeze. No more having to create a Livewire component property for every single form input. All form data will be placed inside the `$model` property array.
